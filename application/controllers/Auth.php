@@ -14,20 +14,61 @@ class Auth extends CI_Controller {
 			$this->load->view('auth/login', $data);
 		} else {
 
-			$data = [
-				'email' => htmlspecialchars($this->input->post('email', true)),
-				'password' => htmlspecialchars($this->input->post('password', true)),
-				'name' => 'Admin',
-				'image' => 'default.jpg',
-				'role_id' => 1,
-				'is_active' => 1,
-				'date_created' => time(),
-				'last_login' => time()
+			$email = $this->input->post('email', true);
+			$password = $this->input->post('password', true);
 
-			];
+			$user = $this->db->get_where('user', ['email' => $email])->row_array();
 
-			$this->db->insert($data, 'user');
+			if ($user) {
+
+				if (password_verify($password, $user['password'])) {
+
+					$data = [
+						'email' => $user['email'],
+						'role_id' => $user['role_id']
+					];
+
+					$this->session->set_userdata($data);
+
+					if ($user['role_id'] == 1) {
+						redirect('admin');
+					}
+
+				} else {
+					$this->session->set_flashdata('message', 
+						'<div class="alert alert-danger" role="alert">Password yang anda masukkan salah!</div>');
+					redirect('auth');
+				}
+
+			} else {
+				$this->session->set_flashdata('message', 
+						'<div class="alert alert-danger" role="alert">Email tidak terdaftar!</div>');
+					redirect('auth');
+			}
+
 		}
 	}
+
+
+
+
+
+
+
+
+	// register
+	// $data = [
+	// 			'email' => htmlspecialchars($this->input->post('email', true)),
+	// 			'password' => htmlspecialchars(password_hash($this->input->post('password', true), PASSWORD_DEFAULT)),
+	// 			'name' => 'Admin',
+	// 			'image' => 'default.jpg',
+	// 			'role_id' => 1,
+	// 			'is_active' => 1,
+	// 			'date_created' => time(),
+	// 			'last_login' => time()
+
+	// 		];
+
+	// $this->db->insert('user', $data);
 	
 }
