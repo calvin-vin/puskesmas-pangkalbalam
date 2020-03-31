@@ -52,10 +52,6 @@ class Auth extends CI_Controller {
 
 
 
-
-
-
-
 	// register
 	// $data = [
 	// 			'email' => htmlspecialchars($this->input->post('email', true)),
