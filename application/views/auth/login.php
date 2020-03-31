@@ -41,16 +41,18 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Halaman Login</h1>
                   </div>
-                  <form class="user">
+                  <form class="user" method="post" action="<?= base_url('auth/index'); ?>">
                     <div class="form-group">
                       <input type="text" class="form-control form-control-user" name="mail" id="email" placeholder="Masukkan Alamat Email...">
+                      <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                     <div class="form-group">
                       <input type="password" class="form-control form-control-user" name="password" id="password" placeholder="Password">
+                      <?= form_error('password', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
-                    <a href="index.html" class="btn btn-primary btn-user btn-block">
+                    <button type="submit" class="btn btn-primary btn-user btn-block">
                       Login
-                    </a>
+                    </button>
                   </form>
                 </div>
               </div>
