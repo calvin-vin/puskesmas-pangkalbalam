@@ -32,14 +32,14 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Interface
+        User
       </div>
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
+        <a class="nav-link" href="<?= base_url('user') ?>">
+          <i class="fas fa-fw fa-user"></i>
+          <span>Profil saya</span></a>
       </li>
 
       <!-- Divider -->
