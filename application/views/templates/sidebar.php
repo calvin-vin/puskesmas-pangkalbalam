@@ -15,35 +15,57 @@
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Admin
-      </div>
 
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item">
-        <a class="nav-link" href="<?= base_url('admin'); ?>">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
-      </li>
+      <?php 
 
-      <!-- Divider -->
-      <hr class="sidebar-divider">
+      $role_id = $user['role_id'];
 
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        User
-      </div>
+      $queryMenu = "SELECT `user_menu`.`id`, `menu` 
+                FROM `user_menu`
+                JOIN `user_access_menu`
+                ON `user_menu`.`id` = `user_access_menu`.`menu_id`
+                WHERE `user_access_menu`.`role_id` = $role_id
+                ORDER BY `user_access_menu`.`menu_id`
+      ";
 
-      <!-- Nav Item - Charts -->
-      <li class="nav-item">
-        <a class="nav-link" href="<?= base_url('user') ?>">
-          <i class="fas fa-fw fa-user"></i>
-          <span>Profil saya</span></a>
-      </li>
+      $menu = $this->db->query($queryMenu)->result_array();
 
-      <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
+       ?>
+
+       <?php foreach ($menu as $m) : ?>
+          <!-- Heading -->
+          <div class="sidebar-heading">
+            <?= $m['menu']; ?>
+          </div>
+
+          <?php 
+
+          $menuId = $m['id'];
+
+          $querySubMenu = "SELECT * 
+                           FROM `user_sub_menu`
+                           WHERE  `user_sub_menu`.`id` = '$menuId'
+                           AND `user_sub_menu`.`is_active` = 1
+          ";
+
+          $subMenu = $this->db->query($querySubMenu)->result_array();
+
+           ?>
+
+
+           <?php foreach($subMenu as $sm) : ?>
+            <!-- Nav Item  -->
+            <li class="nav-item">
+              <a class="nav-link" href="<?= base_url() . $sm['url']; ?>">
+                <i class="<?= $sm['icon']; ?>"></i>
+                <span><?= $sm['title']; ?></span></a>
+            </li>
+           <?php endforeach; ?>
+
+           <!-- Divider -->
+          <hr class="sidebar-divider">
+
+       <?php endforeach; ?>
 
       <!-- Nav Item - Logout -->
       <li class="nav-item">
