@@ -15,7 +15,6 @@
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-
       <?php 
 
       $role_id = $user['role_id'];
@@ -25,7 +24,7 @@
                 JOIN `user_access_menu`
                 ON `user_menu`.`id` = `user_access_menu`.`menu_id`
                 WHERE `user_access_menu`.`role_id` = $role_id
-                ORDER BY `user_access_menu`.`menu_id`
+                ORDER BY `user_access_menu`.`menu_id` ASC
       ";
 
       $menu = $this->db->query($queryMenu)->result_array();
@@ -44,7 +43,7 @@
 
           $querySubMenu = "SELECT * 
                            FROM `user_sub_menu`
-                           WHERE  `user_sub_menu`.`id` = '$menuId'
+                           WHERE  `user_sub_menu`.`menu_id` = '$menuId'
                            AND `user_sub_menu`.`is_active` = 1
           ";
 
@@ -55,7 +54,13 @@
 
            <?php foreach($subMenu as $sm) : ?>
             <!-- Nav Item  -->
-            <li class="nav-item">
+            
+            <?php if ($title == $sm['title']) : ?>
+              <li class="nav-item active">
+            <?php else : ?>
+              <li class="nav-item">
+            <?php endif; ?>
+
               <a class="nav-link" href="<?= base_url() . $sm['url']; ?>">
                 <i class="<?= $sm['icon']; ?>"></i>
                 <span><?= $sm['title']; ?></span></a>
