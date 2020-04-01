@@ -53,6 +53,10 @@ class Auth extends CI_Controller {
 
 	public function logout()
 	{
+		$this->db->set('last_login', time());
+		$this->db->where('email', $this->session->userdata('email'));
+		$this->db->update('user');
+
 		$this->session->unset_userdata('email');
 		$this->session->unset_userdata('role_id');
 		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Anda berhasil logout</div>');
