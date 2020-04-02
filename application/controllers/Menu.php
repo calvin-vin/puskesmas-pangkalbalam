@@ -7,6 +7,7 @@ class Menu extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('Puskesmas_model', 'puskesmas');
+		is_logged_in();
 	}
 
 	public function index()
