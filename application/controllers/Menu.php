@@ -24,7 +24,7 @@ class Menu extends CI_Controller {
 			$this->load->view('templates/sidebar', $data);
 			$this->load->view('templates/topbar', $data);
 			$this->load->view('menu/index', $data);
-			$this->load->view('templates/footer', $data);
+			$this->load->view('templates/footer');
 		} else {
 
 			$this->db->insert('user_menu', ['menu' => $this->input->post('menu', true)]);
@@ -111,7 +111,7 @@ class Menu extends CI_Controller {
 			$this->load->view('templates/sidebar', $data);
 			$this->load->view('templates/topbar', $data);
 			$this->load->view('menu/submenu', $data);
-			$this->load->view('templates/footer', $data);
+			$this->load->view('templates/footer');
 		} else {
 
 			$data = [

@@ -76,5 +76,36 @@ $(document).ready(function() {
 		});
 	});
 
+	// -----------------------Role-----------------------
+	$('.addRole').on('click', function(){
+
+		$('#menuModalLabel').html('Tambah Role');
+		$('.modal-footer button[type=submit]').html('Tambah');
+		$('.modal-body form').attr('action',  base_url + 'admin/role');
+
+		$('#role').val('');
+
+	});
+
+	$('.editRole').on('click', function(){
+		
+		const id = $(this).data('id');
+
+		$('#roleModalLabel').html('Ubah Role');
+		$('.modal-footer button[type=submit]').html('Ubah');
+		$('.modal-body form').attr('action',  base_url + 'admin/role_edit/' + id);
+
+		$.ajax({
+
+			url :  base_url + 'admin/role_getEdit',
+			data : {id:id},
+			method : 'post',
+			dataType : 'json',
+			success : function(data) {
+				$('#role').val(data.menu);
+			}
+
+		});
+	});
 
 });
