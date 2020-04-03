@@ -57,6 +57,10 @@
                       Login
                     </button>
                   </form>
+                  <hr>
+                  <div class="text-center">
+                    <a class="small" href="<?= base_url(); ?>">Halaman Utama</a>
+                  </div>
                 </div>
               </div>
             </div>

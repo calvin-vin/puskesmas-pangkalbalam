@@ -1,0 +1,245 @@
+.nav-link{
+	font-family: 'Roboto', sans-serif;
+	font-size: 12px;
+}
+
+.carousel{
+	margin-top: 50px;
+}
+
+.info{
+	box-shadow: 0px 3px 20px rgba(0,0,0,0.5);
+	border-radius: 12px;
+	margin-top: -100px;
+	background-color: white;
+	padding : 30px;
+	height: 100px;
+	position: relative;
+}
+
+/*generic*/
+
+section {
+	margin-top: 30px;
+	min-height: 600px;
+	padding-top: 70px;
+	padding-bottom: 20px;
+	color: white;
+}
+
+section h3, section p{
+	position: relative;
+	z-index: 1;
+}
+
+section hr{
+	margin-top: 30px;
+	margin-bottom: 50px;
+	border-bottom: 2px solid white;
+	width: 50px;
+	position: relative;
+	z-index: 1
+}
+
+/*Pelayanan*/
+section.pelayanan{
+	background-image: url('img/hospital.jpg');
+	background-size: cover;
+	background-attachment:fixed;
+	position: relative;
+}
+
+section.pelayanan::after{
+	content: '';
+	display: block;
+	width: 100%;
+	height: 100%;
+	background-color: #4e73df;
+	position: absolute;
+	bottom: 0;
+	opacity: 0.8
+}
+
+section .kotak{
+	width: 10rem;
+	height: 10rem;
+	background-color: white;
+	border-radius: 10px;
+	padding: 20px;
+	margin-left: 20px;
+	position: relative;
+	z-index: 1;
+}
+
+section .kotak img{
+	display: block;
+	margin: auto;
+}
+
+/*Berita*/
+section.berita .card{
+	width: 24rem !important;
+	margin: auto;
+}
+
+/*Kesehatan*/
+section.kesehatan .card{
+	width: 24rem !important;
+	margin: auto;
+}
+
+footer{
+	margin-top: 60px;
+	min-height: 350px;
+	background-color: rgba(0,0,0,0.8);
+	padding-top: 80px;
+	padding-bottom: 20px;
+}
+
+footer p{
+	margin-top: 30px;
+}
+
+footer h6{
+	font-size: 16px;
+	margin-top: 20px;
+}
+
+footer h6 a.mail{
+	text-decoration: none;
+	color: white;
+}
+
+footer h6 a.mail:hover{
+	color: #4e73df;
+}
+
+.copyright{
+	min-height: 50px;
+	padding-top: 20px;
+}
+
+.copyright .developer{
+	text-decoration: none;
+}
+
+
+/*utilities*/
+hr.blend{
+	border-bottom: 2px solid #4e73df;
+	width: 50px;
+	margin: 0;
+	margin-top: 15px;
+}
+
+hr.blend::after{
+	content: '';
+	display: block;
+	border-bottom: 2px solid white;
+	width: 50px;
+	margin: 0;
+	margin-left: 50px;
+	
+}
+
+.tombol{
+	border-radius: 50px;
+	font-size: 12px;
+}
+
+section.berita hr, section.tentang hr, section.kesehatan hr{
+	margin-top: 30px;
+	margin-bottom: 50px;
+	border-bottom: 2px solid #5a5c69!important;
+}
+
+section.berita a.lainnya, section.kesehatan a.lainnya{
+	display: block;
+	margin: auto;
+}
+
+footer .social-media .platform a.app{
+	font-size: 18px;
+	margin-right: 5px;
+}
+
+footer .social-media .platform a.app .fa-facebook-square{
+	color: #4267B2;
+}
+
+footer .social-media .platform a.app .fa-twitter-square{
+	color: #00ACEE;
+}
+
+footer .social-media .platform a.app .fa-google-plus-square{
+	color: #DB4437;
+}
+
+footer .social-media .platform a.app .fa-youtube-square{
+	color: #C4302B;
+}
+
+/*Desktop Version*/
+@media (min-width: 992px) {
+
+.nav-link:hover{
+	color: #4e73df !important;
+}
+
+.nav-link:hover::after{
+	content: '';
+	display: block;
+	border-bottom: 3px solid #4e73df;
+	margin: auto;
+	padding-bottom: 17px;
+	margin-bottom: -20px;
+}
+
+.nav-link{
+	margin-right: 10px;
+	font-family: 'Roboto', sans-serif;
+	text-transform: uppercase;
+	font-size: 12px;
+}
+
+section{
+	margin-top: 80px;
+}
+
+section h3{
+	text-transform: uppercase;
+	font-size: 36px;
+}
+
+section hr{
+	margin-top: 70px;
+	margin-bottom: 70px;
+	border-bottom: 2px solid white;
+	width: 50px;
+}
+
+section .kotak{
+	margin-left: 0px;
+}
+
+section.berita .card{
+	width: 16rem !important;
+}
+
+section.kesehatan .card{
+	width: 16rem !important;
+}
+
+footer .social-media .platform a.app{
+	font-size: 32px;
+	margin-right: 5px;
+}
+
+footer .kontak.puskesmas{
+	margin-top: 100px;
+}
+
+
+
+
+}
