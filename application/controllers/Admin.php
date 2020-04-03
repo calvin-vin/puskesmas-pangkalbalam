@@ -102,4 +102,53 @@ class Admin extends CI_Controller {
 			redirect('admin/role');
 		}
 	}
+
+	// --------------------------Role Access--------------------------
+
+	public function roleaccess($id = null)
+	{
+		if (!$id){
+			redirect('admin/role');
+		}
+
+		$data['title'] = 'Role Access';
+		$data['user'] = $this->db->get_where('user', [
+			'email' => $this->session->userdata('email')])->row_array();
+		$data['menu'] = $this->db->get_where('user_menu', ['id !=' => 1])->result_array();
+		$data['role'] = $this->db->get_where('user_role', ['id' => $id])->row_array();
+
+
+		if ($this->form_validation->run() == false) {
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/sidebar', $data);
+			$this->load->view('templates/topbar', $data);
+			$this->load->view('admin/role-access', $data);
+			$this->load->view('templates/footer');
+		}
+	}
+
+	public function changeroleaccess()
+	{
+		$data = [
+			'menu_id' => $this->input->post('menuId', true),
+			'role_id' => $this->input->post('roleId', true)
+		];
+
+		$access = $this->db->get_where('user_access_menu', $data);
+
+		if ($access->num_rows() > 0) {
+			$this->db->delete('user_access_menu', $data);
+		} else {
+			$this->db->insert('user_access_menu', $data);
+		}
+
+		$this->session->set_flashdata('message', 
+			'<div class="alert alert-success alert-dismissible fade show" role="alert">
+			  Akses berhasil diubah
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			    <span aria-hidden="true">&times;</span>
+			  </button>
+			</div>');
+	}
+
 }

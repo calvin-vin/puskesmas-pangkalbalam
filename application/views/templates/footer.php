@@ -162,6 +162,28 @@
       });
     });
 
+
+    // role
+     $('.checkbox_role').on('click', function(){
+      
+      const menuId = $(this).data('menu');
+      const roleId = $(this).data('role');
+
+      $.ajax({
+
+        url :  base_url + 'admin/changeroleaccess',
+        data : {
+          menuId : menuId,
+          roleId : roleId
+        },
+        method : 'post',
+        success : function() {
+          document.location.href = base_url + 'admin/roleaccess/' + roleId;
+        }
+
+      });
+    });
+
   });
 
   </script>
