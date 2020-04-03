@@ -48,13 +48,9 @@
 				      <td><?= $sm['menu']; ?></td>
 				      <td><?= $sm['url']; ?></td>
 				      <td><?= $sm['icon']; ?></td>
-				      <?php if ($sm['is_active'] == 1) : ?>
-				      	<div class="form-group form-check">
-						    <td><input type="checkbox" class="form-check-input ml-3" checked="checked"></td>
-						</div>
-				      <?php else : ?>
-				      	<td><input type="checkbox" class="form-check-input ml-3"></td>
-				      <?php endif; ?>
+				      <td>
+				      	<input type="checkbox" class="form-check-input ml-3 checkbox_submenu" data-id="<?= $sm['id']; ?>" <?= check_submenu($sm['id']); ?>>
+				      </td>
 				      <td>
 				      	<a href="" data-toggle="modal" data-target="#submenuModal" class="badge badge-success editSubmenu" data-id="<?= $sm['id']; ?>">Ubah</a>
 				      	<a href="#" class="badge badge-danger" data-toggle="modal" data-target="#deleteSubmenuModal" onclick="$('#deleteSubmenuModal #formDelete').attr('action', '<?= base_url('menu/delete_submenu/') . $sm['id']; ?>')">Hapus</a>

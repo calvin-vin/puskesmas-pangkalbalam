@@ -28,5 +28,17 @@ function checked($menu_id, $role_id)
 	if ($access->num_rows() > 0) {
 		return 'checked="checked"';
 	}
+}
+
+function check_submenu($id)
+{
+	$ci = get_instance();
+
+	$active = $ci->db->get_where('user_sub_menu', ['id' => $id, 'is_active' => 1]);
+
+	if ($active->num_rows() > 0) {
+		return 'checked="checked"';
+	}
 
 }
+

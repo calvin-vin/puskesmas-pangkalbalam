@@ -131,6 +131,7 @@
     });
 
     // -----------------------Role-----------------------
+
     $('.addRole').on('click', function(){
 
       $('#roleModalLabel').html('Tambah Role');
@@ -163,7 +164,8 @@
     });
 
 
-    // role
+    // -----------------------checkbox_role--------------------
+
      $('.checkbox_role').on('click', function(){
       
       const menuId = $(this).data('menu');
@@ -179,6 +181,23 @@
         method : 'post',
         success : function() {
           document.location.href = base_url + 'admin/roleaccess/' + roleId;
+        }
+
+      });
+    });
+
+     // -------------------------submenu-----------------------
+
+     $('.checkbox_submenu').on('click', function(){
+      
+      const id = $(this).data('id');
+
+      $.ajax({
+        url :  base_url + 'menu/active_submenu',
+        data : {id:id},
+        method : 'post',
+        success : function() {
+          document.location.href = base_url + 'menu/submenu';
         }
 
       });

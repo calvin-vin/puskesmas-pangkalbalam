@@ -191,4 +191,29 @@ class Menu extends CI_Controller {
 		}
 	}
 
+	public function active_submenu()
+	{
+		$id = $this->input->post('id', true);
+
+		$active = $this->db->get_where('user_sub_menu', ['id' => $id, 'is_active' => 1] );
+
+		if ($active->num_rows() > 0) {
+			$this->db->set('is_active', 0);
+			$condition = 'dinonaktifkan';			
+		} else {
+			$this->db->set('is_active', 1);
+			$condition = 'diaktifkan';
+		}
+
+		$this->db->where('id', $id);
+		$this->db->update('user_sub_menu');
+		$this->session->set_flashdata('message', 
+		'<div class="alert alert-success alert-dismissible fade show" role="alert">
+		  Submenu berhasil ' . $condition . '
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    <span aria-hidden="true">&times;</span>
+		  </button>
+		</div>');
+	}
+
 }
