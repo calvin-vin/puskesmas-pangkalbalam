@@ -39,6 +39,16 @@ function check_submenu($id)
 	if ($active->num_rows() > 0) {
 		return 'checked="checked"';
 	}
+}
 
+function check_userActive($id)
+{
+	$ci = get_instance();
+
+	$active = $ci->db->get_where('user', ['id' => $id, 'is_active' => 1]);
+
+	if ($active->num_rows() > 0) {
+		return 'checked="checked"';
+	}
 }
 

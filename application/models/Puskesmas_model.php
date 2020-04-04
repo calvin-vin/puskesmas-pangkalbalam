@@ -27,4 +27,30 @@ class Puskesmas_model extends CI_Model {
 		return $this->db->query($query)->row_array();
 	}
 
+	public function getAllUsers()
+	{
+
+		$query = "SELECT `user`.*, `user_role`.`role`
+				  FROM `user`
+				  JOIN `user_role`
+				  ON `user`.`role_id` = `user_role`.`id`
+				  ORDER BY `user`.`role_id` ASC, `user`.`name` ASC
+		";
+
+		return $this->db->query($query)->result_array();
+	}
+
+	public function getUserDetail($id)
+	{
+		$query = "SELECT `user`.`name`, `user`.`email`, `user`.`section`, `user`.`image`,
+				  `user`.`date_created`, `user`.`last_login`, `user_role`.`role`
+				  FROM `user`
+				  JOIN `user_role`
+				  ON `user`.`role_id` = `user_role`.`id`
+				  WHERE `user`.`id` = $id
+		";
+
+		return $this->db->query($query)->row_array();
+	}
+
 }

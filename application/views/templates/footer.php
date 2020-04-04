@@ -166,7 +166,7 @@
 
     // -----------------------checkbox_role--------------------
 
-     $('.checkbox_role').on('click', function(){
+    $('.checkbox_role').on('click', function(){
       
       const menuId = $(this).data('menu');
       const roleId = $(this).data('role');
@@ -182,7 +182,6 @@
         success : function() {
           document.location.href = base_url + 'admin/roleaccess/' + roleId;
         }
-
       });
     });
 
@@ -208,6 +207,49 @@
     $('.custom-file-input').on('change', function(){
         let fileName = $(this).val().split('\\').pop();
         $(this).next('.custom-file-label').addClass("selected").html(fileName);
+    });
+
+    // ----------------------checkbox_userActive----------------------
+
+    $('.checkbox_userActive').on('click', function(){
+      
+      const id = $(this).data('id');
+
+      $.ajax({
+
+        url :  base_url + 'admin/changeuseractive',
+        data : {id:id},
+        method : 'post',
+        success : function() {
+          document.location.href = base_url + 'admin/user';
+        }
+      });
+    });
+
+    // ------------------------detail user--------------------------
+    $('.detailUser').on('click', function(){
+
+      const id = $(this).data('id');
+
+      $.ajax({
+
+        url :  base_url + 'admin/getDetail_user',
+        data : {id:id},
+        method : 'post',
+        dataType : 'json',
+        success : function(data) {
+          $('#user_name').html(data.name);
+          $('#user_email').html(data.email);
+          $('#user_image').attr('src', base_url + 'assets/img/profile/' + data.image);
+          $('#user_description').html(
+            `Role : ` + data.role + `</br>
+             Bagian : ` + data.section + ` </br>
+             Tanggal Dibuat : ` + new Date(data.date_created * 1000).toLocaleDateString('id-ID')
+            );
+          $('#user_last_login').html(`Terakhir login: ` + new Date(data.last_login * 1000).toLocaleDateString('id-ID') + ' - ' +new Date(data.last_login * 1000).toLocaleTimeString('id-ID'));
+        }
+
+      });
     });
 
   });

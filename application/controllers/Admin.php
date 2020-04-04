@@ -6,6 +6,7 @@ class Admin extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('Puskesmas_model', 'puskesmas');
 		is_logged_in();
 	}
 
@@ -149,6 +150,168 @@ class Admin extends CI_Controller {
 			    <span aria-hidden="true">&times;</span>
 			  </button>
 			</div>');
+	}
+
+
+	// --------------------user management-----------------------
+
+	public function user()
+	{
+		$data['title'] = 'Manajemen Pengguna';
+		$data['user'] = $this->db->get_where('user', [
+			'email' => $this->session->userdata('email')])->row_array();
+		$data['all_user'] = $this->puskesmas->getAllUsers();
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebar', $data);
+		$this->load->view('templates/topbar', $data);
+		$this->load->view('admin/user', $data);
+		$this->load->view('templates/footer');
+	}
+
+	public function user_add()
+	{
+		$data['title'] = 'Tambah Pengguna';
+		$data['user'] = $this->db->get_where('user', [
+			'email' => $this->session->userdata('email')])->row_array();
+
+		$this->db->order_by('id', 'DESC');
+		$data['role'] = $this->db->get('user_role')->result_array();
+
+		$this->form_validation->set_rules('name', 'Nama', 'required|trim');
+		$this->form_validation->set_rules('email', 'email', 'required|trim|valid_email|is_unique[user.email]', [
+			'is_unique' => 'Email sudah digunakan'
+		]);
+		$this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[6]|matches[password2]', [
+			'min_length' => 'Password minimal 6 karakter',
+			'matches' => 'Konfirmasi password tidak sesuai'
+		]);
+		$this->form_validation->set_rules('password2', 'Konfirmasi Password', 'required|trim|min_length[6]|matches[password]');
+		$this->form_validation->set_rules('role_id', 'Role', 'required|trim');
+		$this->form_validation->set_rules('section', 'Bagian', 'required|trim');
+
+		if ($this->form_validation->run() == false) {
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/sidebar', $data);
+			$this->load->view('templates/topbar', $data);
+			$this->load->view('admin/user_add', $data);
+			$this->load->view('templates/footer');
+		} else {
+			$data = [
+				'name' => htmlspecialchars($this->input->post('name', true)),
+				'email' => htmlspecialchars($this->input->post('email', true)),
+				'password' => password_hash($this->input->post('password', true), PASSWORD_DEFAULT),
+				'role_id' => htmlspecialchars($this->input->post('role_id', true)),
+				'section' => htmlspecialchars($this->input->post('section', true)),
+				'image' => 'default.jpg',
+				'is_active' => 1,
+				'date_created' => time(),
+				'last_login' => time()
+			];
+
+			$this->db->insert('user', $data);
+			$this->session->set_flashdata('message', 
+			'<div class="alert alert-success alert-dismissible fade show" role="alert">
+			  Pengguna baru berhasil ditambahkan
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			    <span aria-hidden="true">&times;</span>
+			  </button>
+			</div>');
+			redirect('admin/user');
+		}
+	}
+
+	public function user_delete($id)
+	{
+		$this->db->delete('user', ['id' => $id]);
+		$this->session->set_flashdata('message', 
+		'<div class="alert alert-success alert-dismissible fade show" role="alert">
+		  Pengguna berhasil dihapus
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    <span aria-hidden="true">&times;</span>
+		  </button>
+		</div>');
+		redirect('admin/user');
+	}
+
+	public function user_edit($id)
+	{
+		$data['title'] = 'Ubah Pengguna';
+		$data['user'] = $this->db->get_where('user', [
+			'email' => $this->session->userdata('email')])->row_array();
+		$data['user_id'] = $this->db->get_where('user', ['id' => $id])->row_array();
+
+		$this->db->order_by('id', 'DESC');
+		$data['role'] = $this->db->get('user_role')->result_array();
+
+		$this->form_validation->set_rules('name', 'Nama', 'required|trim');
+		$this->form_validation->set_rules('email', 'email', 'required|trim|valid_email', [
+			'is_unique' => 'Email sudah digunakan'
+		]);
+		$this->form_validation->set_rules('role_id', 'Role', 'required|trim');
+		$this->form_validation->set_rules('section', 'Bagian', 'required|trim');
+
+		if ($this->form_validation->run() == false) {
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/sidebar', $data);
+			$this->load->view('templates/topbar', $data);
+			$this->load->view('admin/user_edit', $data);
+			$this->load->view('templates/footer');
+		} else {
+
+			$id = $this->input->post('id', true);
+
+			$data = [
+				'name' => htmlspecialchars($this->input->post('name', true)),
+				'email' => htmlspecialchars($this->input->post('email', true)),
+				'role_id' => htmlspecialchars($this->input->post('role_id', true)),
+				'section' => htmlspecialchars($this->input->post('section', true)),
+			];
+
+			$this->db->set($data);
+			$this->db->where('id', $id);
+			$this->db->update('user');
+			$this->session->set_flashdata('message', 
+			'<div class="alert alert-success alert-dismissible fade show" role="alert">
+			  Pengguna berhasil diubah
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			    <span aria-hidden="true">&times;</span>
+			  </button>
+			</div>');
+			redirect('admin/user');
+		}
+	}
+
+	public function changeuseractive()
+	{
+		$id = $this->input->post('id', true);
+
+		$active = $this->db->get_where('user', ['id' => $id, 'is_active' => 1]);
+
+		if ($active->num_rows() > 0) {
+			$this->db->set('is_active', 0);
+			$user_active = 'dinonaktif';
+		} else {
+			$this->db->set('is_active', 1);
+			$user_active = 'aktif';
+		}
+
+		$this->db->where('id', $id);
+		$this->db->update('user');
+
+		$this->session->set_flashdata('message', 
+			'<div class="alert alert-success alert-dismissible fade show" role="alert">
+			  Akun berhasil ' . $user_active . '
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			    <span aria-hidden="true">&times;</span>
+			  </button>
+			</div>');
+	}
+
+	public function getDetail_user()
+	{
+		$id = $this->input->post('id', true);
+		echo json_encode($this->puskesmas->getUserDetail($id));
 	}
 
 }
