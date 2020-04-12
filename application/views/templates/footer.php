@@ -41,8 +41,15 @@
   <script src="<?= base_url('assets/'); ?>vendor/jquery/jquery.min.js"></script>
   <script src="<?= base_url('assets/'); ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+  <!-- Jquery UI -->
+  <script src="<?= base_url('assets/'); ?>vendor/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+
   <!-- Core plugin JavaScript-->
   <script src="<?= base_url('assets/'); ?>vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="<?= base_url('assets/'); ?>vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="<?= base_url('assets/'); ?>vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
   <!-- Custom scripts for all pages-->
   <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
@@ -55,7 +62,58 @@
     
     $(document).ready(function() {
 
-    const base_url = 'http://localhost/puskesmas-pangkalbalam/'
+    $("body").tooltip({ selector: '[data-toggle=tooltip]' }); 
+
+    // menggunkan plugin datepicker JQuery
+    (function( factory) {
+      if ( typeof define === "function" && define.amd ) {
+
+          // AMD. Register as an anonymous module.
+          define( [ "../widgets/datepicker" ], factory );
+      } else {
+
+          // Browser globals
+          factory( jQuery.datepicker );
+      }
+    }( function( datepicker ) {
+
+    datepicker.regional.id = {
+        closeText: "Tutup",
+        prevText: "&#x3C;mundur",
+        nextText: "maju&#x3E;",
+        currentText: "hari ini",
+        monthNames: [ "Januari","Februari","Maret","April","Mei","Juni",
+        "Juli","Agustus","September","Oktober","Nopember","Desember" ],
+        monthNamesShort: [ "Jan","Feb","Mar","Apr","Mei","Jun",
+        "Jul","Agu","Sep","Okt","Nop","Des" ],
+        dayNames: [ "Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu" ],
+        dayNamesShort: [ "Min","Sen","Sel","Rab","kam","Jum","Sab" ],
+        dayNamesMin: [ "Mg","Sn","Sl","Rb","Km","Jm","Sb" ],
+        weekHeader: "Mg",
+        dateFormat: "dd/mm/yy",
+        firstDay: 0,
+        isRTL: false,
+        showMonthAfterYear: false,
+        yearSuffix: "" };
+    datepicker.setDefaults( datepicker.regional.id );
+
+    return datepicker.regional.id;
+
+    } ) );
+
+    $( "#datepicker" ).datepicker({
+      changeMonth: true,
+      yearRange: "1950:2030",
+      changeYear: true
+    });
+
+
+    // menggunkan plugin datatable JQuery
+    $('#dataTable').DataTable();
+
+
+    // baseurl
+    const base_url = 'http://localhost/puskesmas-pangkalbalam/';
 
     // -------------------------menu---------------------
 
@@ -252,7 +310,34 @@
       });
     });
 
+    // ------------------------------detail pasien------------------------
+    $('.detailPasien').on('click', function(){
+
+      const id = $(this).data('id');
+
+      $.ajax({
+
+        url :  base_url + 'puskesmas/getDetail_pasien',
+        data : {id:id},
+        method : 'post',
+        dataType : 'json',
+        success : function(data) {
+          $('#nomor_pasien').html(data.nomor_pasien);
+          $('#nik').html(data.nik);
+          $('#nama').html(data.nama);
+          $('#jenis_kelamin').html(data.jenis_kelamin);
+          $('#tanggal_lahir').html(data.tanggal_lahir);
+          $('#kategori').html(data.kategori);
+          $('#hp').html(data.hp);
+          $('#alamat').html(data.alamat);
+        }
+
+      });
+    });
+
   });
+
+
 
   </script>
 

@@ -13,7 +13,7 @@
  
  		 <div class="row">
  		 	<div class="col">
- 		 		<img src="<?= base_url('assets/img/profile/') . $user['image']; ?>" width="300" class="rounded-circle mx-auto d-block img-fluid">
+ 		 		<img src="<?= base_url('assets/img/profile/') . $user['image']; ?>" class="mx-auto d-block img-fluid rounded-circle" style="display: block;width: 300px;height: 300px;background-size: cover;">
  		 		<h6 class="text-center mt-3 text-primary">Nama : <?= $user['name']; ?></h6>
  		 		<p class="text-muted text-center font-italic">Login Terakhir : <?= date('d-m-Y H:i:s', $user['last_login']); ?></p>
  		 	</div>

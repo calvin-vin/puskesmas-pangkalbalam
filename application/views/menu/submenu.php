@@ -26,7 +26,7 @@
       </div>
 
       <div class="row mt-3">
-      	<div class="col-md-10">
+      	<div class="col-md">
       		<table class="table table-hover">
 			  <thead>
 			    <tr>
