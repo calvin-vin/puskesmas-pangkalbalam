@@ -24,9 +24,6 @@
   <!-- JQuery UI -->
   <link href="<?= base_url('assets/'); ?>vendor/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet">
 
-  <!-- Datepicker -->
-  <link href="<?= base_url('assets/'); ?>vendor/datepicker/dist/datepicker.min.css" rel="stylesheet">
-
 </head>
 
 <body id="page-top">

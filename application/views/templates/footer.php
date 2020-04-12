@@ -51,6 +51,9 @@
   <script src="<?= base_url('assets/'); ?>vendor/datatables/jquery.dataTables.min.js"></script>
   <script src="<?= base_url('assets/'); ?>vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
+  <!-- Input spinner -->
+  <script src="<?= base_url('assets/'); ?>vendor/spinner/bootstrap-number-input.js"></script>
+
   <!-- Custom scripts for all pages-->
   <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
 
@@ -62,6 +65,14 @@
     
     $(document).ready(function() {
 
+    // spinner jquery
+    $('#spinner').bootstrapNumber({
+      upClass:'primary rounded-0',
+      downClass:'danger rounded-0',
+      center:true
+    });
+
+    // tooltip jqeury
     $("body").tooltip({ selector: '[data-toggle=tooltip]' }); 
 
     // menggunkan plugin datepicker JQuery
@@ -329,6 +340,34 @@
           $('#tanggal_lahir').html(data.tanggal_lahir);
           $('#kategori').html(data.kategori);
           $('#hp').html(data.hp);
+          $('#alamat').html(data.alamat);
+        }
+
+      });
+    });
+
+
+    // ----------------------------detail pendaftaran-------------------
+    $('.detailPendaftaran').on('click', function(){
+
+      const id = $(this).data('id');
+
+      $.ajax({
+
+        url :  base_url + 'puskesmas/getDetail_pendaftaran',
+        data : {id:id},
+        method : 'post',
+        dataType : 'json',
+        success : function(data) {
+          $('#nomor_pendaftaran').html(data.nomor_pendaftaran);
+          $('#nomor_pasien').html(data.nomor_pasien);
+          $('#nik').html(data.nik);
+          $('#nama').html(data.nama);
+          $('#jenis_kelamin').html(data.jenis_kelamin);
+          $('#tanggal_lahir').html(data.tanggal_lahir);
+          $('#kategori').html(data.kategori);
+          $('#biaya').html('Rp ' + parseInt(data.biaya).toLocaleString('in-IN'));
+          $('#tanggal_berobat').html(data.tanggal_berobat);
           $('#alamat').html(data.alamat);
         }
 
