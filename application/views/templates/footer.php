@@ -328,7 +328,7 @@
 
       $.ajax({
 
-        url :  base_url + 'puskesmas/getDetail_pasien',
+        url :  base_url + 'pendaftaran/getDetail_pasien',
         data : {id:id},
         method : 'post',
         dataType : 'json',
@@ -354,7 +354,7 @@
 
       $.ajax({
 
-        url :  base_url + 'puskesmas/getDetail_pendaftaran',
+        url :  base_url + 'pendaftaran/getDetail_pendaftaran',
         data : {id:id},
         method : 'post',
         dataType : 'json',

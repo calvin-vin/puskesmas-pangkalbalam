@@ -6,7 +6,7 @@
 	        <div class="col-md-7 offset-2">
 	        	<h3 class="mb-5 text-gray-800 text-center">Form Tambah Pasien</h3>
 
-	        	<form action="<?= base_url('puskesmas/pasien_add') ?>" method="post">
+	        	<form action="<?= base_url('pendaftaran/pasien_add') ?>" method="post">
         			<div class="form-group row">
 					    <div class="col-md-6">
 					    	<label for="nomor_pasien"><strong>Nomor Pasien</strong></label>
