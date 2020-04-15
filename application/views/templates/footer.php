@@ -440,6 +440,22 @@
         minLength: 1
       });
 
+       // -----------------------autocomplete penyakit hasil pemeriksaan----------------   
+      $( "#penyakitHasilPemeriksaan" ).autocomplete({
+        source: function( request, response ) {
+          $.ajax( {
+            url: base_url + 'laboratorium/getAllPenyakit',
+            method: 'post',
+            data: {keyword:$('#penyakitHasilPemeriksaan').val()},
+            dataType: "json",
+            success: function( data ) {
+              response( data )
+            }
+          } );
+        },
+        minLength: 1
+      });
+
       // ----------------------------detail pemeriksaan-------------------
       $('.detailPemeriksaan').on('click', function(){
 
@@ -466,7 +482,6 @@
       });
 
 
-      // ---------------------------detail rujukan-------------------------
       // ----------------------------detail pemeriksaan-------------------
       $('.detailRujukan').on('click', function(){
 
@@ -492,6 +507,31 @@
         });
       });
 
+
+      // ----------------------------detail pemeriksaan-------------------
+      $('.detailLab').on('click', function(){
+
+        const id = $(this).data('id');
+
+        $.ajax({
+
+          url :  base_url + 'laboratorium/getDetail_laboratorium',
+          data : {id:id},
+          method : 'post',
+          dataType : 'json',
+          success : function(data) {
+            $('#nomor_laboratorium').html(data.nomor_laboratorium);
+            $('#nomor_rekam_medis').html(data.nomor_rekam_medis);
+            $('#nama_pasien').html(data.nama_pasien);
+            $('#tanggal_pemeriksaan').html(data.tanggal_pemeriksaan);
+            $('#dokter_pengirim').html(data.dokter_pengirim);
+            $('#nama_petugas').html(data.nama_petugas);
+            $('#hasil_pemeriksaan').html(data.hasil_pemeriksaan);
+            $('#keterangan').html(data.keterangan);
+          }
+
+        });
+      });
 
   });
 
