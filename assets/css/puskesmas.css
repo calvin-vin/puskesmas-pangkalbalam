@@ -1,3 +1,7 @@
 .login_card{
 	margin-top: 120px;
 }
+
+#infoDaftarRekamMedis, #dataTidakDitemukan{
+	visibility: visible;	
+}

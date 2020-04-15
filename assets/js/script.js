@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
 	const base_url = 'http://localhost/puskesmas-pangkalbalam/'
 
 	// -------------------------menu---------------------
@@ -66,7 +65,6 @@ $(document).ready(function() {
 			method : 'post',
 			dataType : 'json',
 			success : function(data) {
-				console.log(data);
 				$('#title').val(data.title);
 				$('#menu_id').val(data.menu_id);
 				$('#url').val(data.url);

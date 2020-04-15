@@ -57,74 +57,70 @@
   <!-- Custom scripts for all pages-->
   <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
 
-  <!-- Puskesmas Script -->
-  <script src="<?= base_url('assets/'); ?>js/script.js"></script>
-
-
   <script type="text/javascript">
     
     $(document).ready(function() {
 
-    // spinner jquery
-    $('#spinner').bootstrapNumber({
-      upClass:'primary rounded-0',
-      downClass:'danger rounded-0',
-      center:true
-    });
+      // spinner jquery
+      $('#spinner').bootstrapNumber({
+        upClass:'primary rounded-0',
+        downClass:'danger rounded-0',
+        center:true
+      });
 
-    // tooltip jqeury
-    $("body").tooltip({ selector: '[data-toggle=tooltip]' }); 
+      // tooltip jqeury
+      $("body").tooltip({ selector: '[data-toggle=tooltip]' }); 
 
-    // menggunkan plugin datepicker JQuery
-    (function( factory) {
-      if ( typeof define === "function" && define.amd ) {
+      // menggunkan plugin datepicker JQuery
+      (function( factory) {
+        if ( typeof define === "function" && define.amd ) {
 
-          // AMD. Register as an anonymous module.
-          define( [ "../widgets/datepicker" ], factory );
-      } else {
+            // AMD. Register as an anonymous module.
+            define( [ "../widgets/datepicker" ], factory );
+        } else {
 
-          // Browser globals
-          factory( jQuery.datepicker );
-      }
-    }( function( datepicker ) {
+            // Browser globals
+            factory( jQuery.datepicker );
+        }
+      }( function( datepicker ) {
 
-    datepicker.regional.id = {
-        closeText: "Tutup",
-        prevText: "&#x3C;mundur",
-        nextText: "maju&#x3E;",
-        currentText: "hari ini",
-        monthNames: [ "Januari","Februari","Maret","April","Mei","Juni",
-        "Juli","Agustus","September","Oktober","Nopember","Desember" ],
-        monthNamesShort: [ "Jan","Feb","Mar","Apr","Mei","Jun",
-        "Jul","Agu","Sep","Okt","Nop","Des" ],
-        dayNames: [ "Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu" ],
-        dayNamesShort: [ "Min","Sen","Sel","Rab","kam","Jum","Sab" ],
-        dayNamesMin: [ "Mg","Sn","Sl","Rb","Km","Jm","Sb" ],
-        weekHeader: "Mg",
-        dateFormat: "dd/mm/yy",
-        firstDay: 0,
-        isRTL: false,
-        showMonthAfterYear: false,
-        yearSuffix: "" };
-    datepicker.setDefaults( datepicker.regional.id );
+      datepicker.regional.id = {
+          closeText: "Tutup",
+          prevText: "&#x3C;mundur",
+          nextText: "maju&#x3E;",
+          currentText: "hari ini",
+          monthNames: [ "Januari","Februari","Maret","April","Mei","Juni",
+          "Juli","Agustus","September","Oktober","Nopember","Desember" ],
+          monthNamesShort: [ "Jan","Feb","Mar","Apr","Mei","Jun",
+          "Jul","Agu","Sep","Okt","Nop","Des" ],
+          dayNames: [ "Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu" ],
+          dayNamesShort: [ "Min","Sen","Sel","Rab","kam","Jum","Sab" ],
+          dayNamesMin: [ "Mg","Sn","Sl","Rb","Km","Jm","Sb" ],
+          weekHeader: "Mg",
+          dateFormat: "dd/mm/yy",
+          firstDay: 0,
+          isRTL: false,
+          showMonthAfterYear: false,
+          yearSuffix: "" };
+      datepicker.setDefaults( datepicker.regional.id );
 
-    return datepicker.regional.id;
+      return datepicker.regional.id;
 
-    } ) );
+      } ) );
 
-    $( "#datepicker" ).datepicker({
-      changeMonth: true,
-      yearRange: "1950:2030",
-      changeYear: true
-    });
-
-
-    // menggunkan plugin datatable JQuery
-    $('#dataTable').DataTable();
+      $( "#datepicker" ).datepicker({
+        changeMonth: true,
+        yearRange: "1950:2030",
+        changeYear: true
+      });
 
 
-    // baseurl
-    const base_url = 'http://localhost/puskesmas-pangkalbalam/';
+      // menggunkan plugin datatable JQuery
+      $('#dataTable').DataTable();
+
+
+      // baseurl
+      const base_url = 'http://localhost/puskesmas-pangkalbalam/';
 
     // -------------------------menu---------------------
 
@@ -373,6 +369,103 @@
 
       });
     });
+
+
+    // --------------------------------------dokter--------------------------
+
+    //daftar rekam medis dengan ajax
+      $('#infoDaftarRekamMedis').hide();  
+      $('#dataTidakDitemukan').hide();  
+      $('#inputDaftarRekamMedis').on('keyup', function(){
+        let nomor = $('#inputDaftarRekamMedis').val();
+
+        $.ajax({
+          url :  base_url + 'dokter/getPendaftaranByNomor',
+          data : {nomor:nomor},
+          method : 'post',
+          dataType : 'json',
+          success : function(data) {
+            if(data) {
+              $('#dataTidakDitemukan').hide();
+              $('#infoDaftarRekamMedis').show();
+              $('#nomor_pendaftaran').html(data.nomor_pendaftaran);
+              $('#nama').html(data.nama);
+              $('#jenis_kelamin').html(data.jenis_kelamin);
+              $('#tanggal_lahir').html(data.tanggal_lahir);
+              $('#inputNomorPendaftaran').val(data.nomor_pendaftaran);
+              $('#linkDaftarRekamMedis').attr('href', base_url + 'dokter/rekam_add/' + data.nomor_pendaftaran);
+            } else {
+              $('#infoDaftarRekamMedis').hide();
+              $('#dataTidakDitemukan').show();
+              $('#inputNomorPendaftaran').val('');
+              $('#linkDaftarRekamMedis').attr('href', '');
+              if (!nomor){
+                $('#dataTidakDitemukan').hide();
+              }
+            }
+          }
+        });
+
+      });
+
+      // -----------------------autocomplete penyakit rekam medis----------------   
+      $( "#penyakitRekamMedis" ).autocomplete({
+        source: function( request, response ) {
+          $.ajax( {
+            url: base_url + 'dokter/getAllPenyakit',
+            method: 'post',
+            data: {keyword:$('#penyakitRekamMedis').val()},
+            dataType: "json",
+            success: function( data ) {
+              response( data )
+            }
+          } );
+        },
+        minLength: 1
+      });
+
+      // -----------------------autocomplete obat rekam medis----------------   
+      $( "#obatRekamMedis" ).autocomplete({
+        source: function( request, response ) {
+          $.ajax( {
+            url: base_url + 'dokter/getAllObat',
+            method: 'post',
+            data: {keyword:$('#obatRekamMedis').val()},
+            dataType: "json",
+            success: function( data ) {
+              response( data )
+            }
+          } );
+        },
+        minLength: 1
+      });
+
+      // ----------------------------detail pemeriksaan-------------------
+      $('.detailPemeriksaan').on('click', function(){
+
+        const id = $(this).data('id');
+
+        $.ajax({
+
+          url :  base_url + 'dokter/getDetail_pemeriksaan',
+          data : {id:id},
+          method : 'post',
+          dataType : 'json',
+          success : function(data) {
+            console.log(data);
+            $('#nomor_pemeriksaan').html(data.nomor_pemeriksaan);
+            $('#nomor_rekam_medis').html(data.nomor_rekam_medis);
+            $('#nama_pasien').html(data.nama_pasien);
+            $('#tanggal_berobat').html(data.tanggal_berobat);
+            $('#nama_dokter').html(data.nama_dokter);
+            $('#nama_penyakit').html(data.nama_penyakit);
+            $('#nama_obat').html(data.nama_obat);
+            $('#keterangan').html(data.keterangan);
+          }
+
+        });
+      });
+
 
   });
 
