@@ -53,4 +53,31 @@ class Puskesmas_model extends CI_Model {
 		return $this->db->query($query)->row_array();
 	}
 
+	public function getPasienHarian()
+	{
+		date_default_timezone_set('Asia/Jakarta');
+		$day = date('d/m/Y', time());
+		$query = "SELECT tanggal_berobat
+				  FROM rekam_medis WHERE tanggal_berobat = '$day'";
+		return $this->db->query($query)->num_rows();
+	}
+
+	public function getPasienBulanan()
+	{
+		date_default_timezone_set('Asia/Jakarta');
+		$month = date('m/Y', time());
+		$query = "SELECT SUBSTRING(tanggal_berobat, 4, 7)
+				  FROM rekam_medis WHERE SUBSTRING(tanggal_berobat, 4, 7) = '$month'";
+		return $this->db->query($query)->num_rows();
+	}
+
+	public function getPasienTahunan()
+	{
+		date_default_timezone_set('Asia/Jakarta');
+		$year = date('Y', time());
+		$query = "SELECT SUBSTRING(tanggal_berobat, 7, 4)
+				  FROM rekam_medis WHERE SUBSTRING(tanggal_berobat, 7, 4) = '$year'";
+		return $this->db->query($query)->num_rows();
+	}
+
 }

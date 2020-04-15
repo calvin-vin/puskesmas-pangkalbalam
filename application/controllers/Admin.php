@@ -15,6 +15,9 @@ class Admin extends CI_Controller {
 		$data['title'] = 'Dashboard';
 		$data['user'] = $this->db->get_where('user', [
 			'email' => $this->session->userdata('email')])->row_array();
+		$data['pasien_harian'] = $this->puskesmas->getPasienHarian();
+		$data['pasien_bulanan'] = $this->puskesmas->getPasienBulanan();
+		$data['pasien_tahunan'] = $this->puskesmas->getPasienTahunan();
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
@@ -312,6 +315,17 @@ class Admin extends CI_Controller {
 	{
 		$id = $this->input->post('id', true);
 		echo json_encode($this->puskesmas->getUserDetail($id));
+	}
+
+	public function getPasienMei()
+	{
+		$result = $this->db->query("SELECT id FROM user")->result_array();
+		$row = [];
+		foreach ($result as $single) {
+			$row[] = $single['id'];
+		}
+
+		echo json_encode($row);
 	}
 
 }
