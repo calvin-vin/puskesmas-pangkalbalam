@@ -452,7 +452,6 @@
           method : 'post',
           dataType : 'json',
           success : function(data) {
-            console.log(data);
             $('#nomor_pemeriksaan').html(data.nomor_pemeriksaan);
             $('#nomor_rekam_medis').html(data.nomor_rekam_medis);
             $('#nama_pasien').html(data.nama_pasien);
@@ -460,6 +459,33 @@
             $('#nama_dokter').html(data.nama_dokter);
             $('#nama_penyakit').html(data.nama_penyakit);
             $('#nama_obat').html(data.nama_obat);
+            $('#keterangan').html(data.keterangan);
+          }
+
+        });
+      });
+
+
+      // ---------------------------detail rujukan-------------------------
+      // ----------------------------detail pemeriksaan-------------------
+      $('.detailRujukan').on('click', function(){
+
+        const id = $(this).data('id');
+
+        $.ajax({
+
+          url :  base_url + 'rujukan/getDetail_rujukan',
+          data : {id:id},
+          method : 'post',
+          dataType : 'json',
+          success : function(data) {
+            $('#nomor_rujukan').html(data.nomor_rujukan);
+            $('#nomor_rekam_medis').html(data.nomor_rekam_medis);
+            $('#nama_pasien').html(data.nama_pasien);
+            $('#tanggal_berobat').html(data.tanggal_berobat);
+            $('#nama_petugas').html(data.nama_petugas);
+            $('#tujuan').html(data.tujuan);
+            $('#nama_penyakit').html(data.nama_penyakit);
             $('#keterangan').html(data.keterangan);
           }
 
