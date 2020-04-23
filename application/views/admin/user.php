@@ -17,20 +17,35 @@
       	</div>
       </div>
 
-      <div class="row mt-3">
-      	<div class="col-md-6">
-      		<table class="table table-hover">
-			  <thead>
-			    <tr>
-			      <th scope="col">#</th>
-			      <th scope="col">Nama</th>
-			      <th scope="col">Role</th>
-			      <th scope="col">Bagian</th>
-			      <th scope="col">Aktif</th>
-			      <th scope="col">Action</th>
-			    </tr>
-			  </thead>
-			  <tbody>
+      <!-- DataTales -->
+      <div class="card shadow my-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Data Pengguna</h6>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>#</th>
+			      <th>Nama</th>
+			      <th>Role</th>
+			      <th>Bagian</th>
+			      <th>Aktif</th>
+			      <th>Action</th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <th>#</th>
+			      <th>Nama</th>
+			      <th>Role</th>
+			      <th>Bagian</th>
+			      <th>Aktif</th>
+			      <th>Action</th>
+                </tr>
+              </tfoot>
+              <tbody>
 			  	<?php $i = 1; ?>
 			    <?php foreach($all_user as $users) : ?>
 			    	<tr>
@@ -50,8 +65,9 @@
 				    <?php $i++; ?>
 			    <?php endforeach ?>
 			  </tbody>
-			</table>
-      	</div>
+            </table>
+          </div>
+        </div>
       </div>
 
     </div>

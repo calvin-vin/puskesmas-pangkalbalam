@@ -34,7 +34,6 @@
                     <tr>
                       <th>Nomor</th>
                       <th>Nama</th>
-                      <th>Alamat</th>
                       <th>NIK</th>
                       <th>Kategori</th>
                       <th>Aksi</th>
@@ -44,7 +43,6 @@
                     <tr>
                       <th>Nomor</th>
                       <th>Nama</th>
-                      <th>Alamat</th>
                       <th>NIK</th>
                       <th>Kategori</th>
                       <th>Aksi</th>
@@ -55,7 +53,6 @@
                 	<tr>
                       <td><?= $pasien['nomor_pasien']; ?></td>
                       <td><?= $pasien['nama']; ?></td>
-                      <td><?= $pasien['alamat']; ?></td>
                       <td><?= $pasien['nik']; ?></td>
                       <td><?= $pasien['kategori']; ?></td>
                       <td>
