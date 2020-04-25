@@ -9,8 +9,13 @@ class Auth extends CI_Controller {
 			redirect('user');
 		}
 
-		$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
-		$this->form_validation->set_rules('password', 'Password', 'required|trim');
+		$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email', [
+			'required' => 'Email wajib diisi',
+			'valid_email' => 'Email harus valid'
+		]);
+		$this->form_validation->set_rules('password', 'Password', 'required|trim', [
+			'required' => 'Password wajib diisi'
+		]);
 
 		$data['title'] = 'Halaman Login';
 		
