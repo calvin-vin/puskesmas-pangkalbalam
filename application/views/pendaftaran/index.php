@@ -56,26 +56,26 @@
                       <td><?= $pasien['nik']; ?></td>
                       <td><?= $pasien['kategori']; ?></td>
                       <td>
-                      	<div class="row mb-1">
-				      		<div class="col-5 offset-1">
+                <div class="row justify-content-center text-center">
+				      		<div class="col-md-5 py-1">
 				      			<a href="<?= base_url('pendaftaran/pendaftaran_add/') . $pasien['id']; ?>" data-toggle="tooltip" data-placement="bottom" title="Daftar" class="btn btn-primary btn-circle btn-sm">
 						      		<i class="fas fa-notes-medical"></i>
 						      	</a>
 				      		</div>
-				      		<div class="col-5">
+				      		<div class="col-md-5 py-1">
 				      			<a href="#" data-toggle="modal" data-target="#detailPasienModal" data-toggle="tooltip" data-placement="bottom" title="Detail" class="btn btn-info btn-circle btn-sm detailPasien" data-id="<?= $pasien['id']; ?>">
 						      		<i class="fas fa-info-circle"></i>
 						      	</a>
 				      		</div>
 				      	</div>
-				      	<div class="row">
-				      		<div class="col-5 offset-1">
+				      	<div class="row justify-content-center text-center">
+				      		<div class="col-md-5 py-1">
 				      			<a href="<?= base_url('pendaftaran/pasien_edit/') . $pasien['id']; ?>" 
 				      				title="Ubah" class="btn btn-success btn-circle btn-sm ">
 						      		<i class="fas fa-edit"></i>
 						      	</a>
 				      		</div>
-				      		<div class="col-5">
+				      		<div class="col-md-5 py-1">
 				      			<a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#deletePasienModal"  title="Hapus" onclick="$('#deletePasienModal #formDelete').attr('action', '<?= base_url('pendaftaran/pasien_delete/') . $pasien['id']; ?>')">
 						      		<i class="fas fa-trash"></i>
 						      	</a>

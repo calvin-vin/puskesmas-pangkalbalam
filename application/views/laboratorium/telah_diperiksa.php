@@ -45,19 +45,19 @@
                       <td><?= $dl['hasil_pemeriksaan']; ?></td>
                        <td><?= $dl['dokter_pengirim']; ?></td>
                       <td>
-                        <div class="row justify-content-center">
-                          <div class="col-3">
+                        <div class="row justify-content-center text-center">
+                          <div class="col-md-3 py-1">
                             <a href="#" data-toggle="modal" data-target="#detailLabModal" data-toggle="tooltip" data-placement="bottom" title="Detail" class="btn btn-info btn-circle btn-sm detailLab" data-id="<?= $dl['id']; ?>">
                               <i class="fas fa-info-circle"></i>
                             </a>
                           </div>
-                          <div class="col-3">
+                          <div class="col-md-3 py-1">
                             <a href="<?= base_url('laboratorium/periksa_edit/') . $dl['id']; ?>"
                               title="Ubah" class="btn btn-success btn-circle btn-sm ">
                               <i class="fas fa-edit"></i>
                             </a>
                           </div>
-                          <div class="col-3">
+                          <div class="col-md-3 py-1">
                             <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#deleteLabModal"  title="Hapus" onclick="$('#deleteLabModal #formDelete').attr('action', '<?= base_url('laboratorium/periksa_delete/') . $dl['id']; ?>')">
                               <i class="fas fa-trash"></i>
                             </a>

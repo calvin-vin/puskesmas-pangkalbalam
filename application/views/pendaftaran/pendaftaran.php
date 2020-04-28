@@ -48,19 +48,19 @@
                       <td><?= $pendaftaran['nik']; ?></td>
                       <td><?= $pendaftaran['kategori']; ?></td>
                       <td>
-                      	<div class="row justify-content-center">
-        				      		<div class="col-3">
+                      	<div class="row justify-content-center text-center">
+        				      		<div class="col-md-3 py-1">
         				      			<a href="#" data-toggle="modal" data-target="#detailPendaftaranModal" data-toggle="tooltip" data-placement="bottom" title="Detail" class="btn btn-info btn-circle btn-sm detailPendaftaran" data-id="<?= $pendaftaran['id']; ?>">
         						      		<i class="fas fa-info-circle"></i>
         						      	</a>
         				      		</div>
-                          <div class="col-3">
+                          <div class="col-md-3 py-1">
                             <a href="<?= base_url('pendaftaran/pendaftaran_edit/') . $pendaftaran['id']; ?>"
                               title="Ubah" class="btn btn-success btn-circle btn-sm ">
                               <i class="fas fa-edit"></i>
                             </a>
                           </div>
-                          <div class="col-3">
+                          <div class="col-md-3 py-1">
                             <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#deletePendaftaranModal"  title="Hapus" onclick="$('#deletePendaftaranModal #formDelete').attr('action', '<?= base_url('pendaftaran/pendaftaran_delete/') . $pendaftaran['id']; ?>')">
                               <i class="fas fa-trash"></i>
                             </a>

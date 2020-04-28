@@ -78,7 +78,7 @@ hr.blend{
 hr.blend::after{
 	content: '';
 	display: block;
-	border-bottom: 2px solid white;
+	border-bottom: 2px solid #5a5c69;
 	width: 50px;
 	margin: 0;
 	margin-left: 50px;
@@ -91,7 +91,7 @@ hr.blend::after{
 }
 
 footer .social-media .platform a.app{
-	font-size: 18px;
+	font-size: 26px;
 	margin-right: 5px;
 }
 

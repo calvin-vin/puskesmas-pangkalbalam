@@ -14,7 +14,7 @@ Petugas lab
 username:vennodesh@gmail.com
 password:venno123
 
-Petugas puskesmas
+Admin puskesmas
 username:kristiaella@gmail.com
 password:ella123
 

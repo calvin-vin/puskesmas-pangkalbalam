@@ -206,7 +206,7 @@ class Admin extends CI_Controller {
 				'password' => password_hash($this->input->post('password', true), PASSWORD_DEFAULT),
 				'role_id' => htmlspecialchars($this->input->post('role_id', true)),
 				'section' => htmlspecialchars($this->input->post('section', true)),
-				'image' => 'default.jpg',
+				'image' => 'default.png',
 				'is_active' => 1,
 				'date_created' => time(),
 				'last_login' => time()

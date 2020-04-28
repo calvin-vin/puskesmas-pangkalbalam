@@ -30,7 +30,7 @@ class Puskesmas extends CI_Controller {
 		$data['user'] = $this->db->get_where('user', [
 			'email' => $this->session->userdata('email')])->row_array();
 
-		$this->form_validation->set_rules('nomor_obat','No Obat', 'required|trim');
+		$this->form_validation->set_rules('nomor_obat','Nomor Obat', 'required|trim');
 		$this->form_validation->set_rules('nama','Nama Obat', 'required|trim');
 		$this->form_validation->set_rules('jenis','Jenis Obat', 'required|trim');
 		$this->form_validation->set_rules('tanggal_masuk','Tanggal Masuk Obat', 'required|trim');
@@ -82,7 +82,7 @@ class Puskesmas extends CI_Controller {
 			'email' => $this->session->userdata('email')])->row_array();
 		$data['obat'] = $this->db->get_where('obat', ['id'=>$id])->row_array();
 
-		$this->form_validation->set_rules('nomor_obat','No Obat', 'required|trim');
+		$this->form_validation->set_rules('nomor_obat','Nomor Obat', 'required|trim');
 		$this->form_validation->set_rules('nama','Nama Obat', 'required|trim');
 		$this->form_validation->set_rules('jenis','Jenis Obat', 'required|trim');
 		$this->form_validation->set_rules('tanggal_masuk','Tanggal Masuk Obat', 'required|trim');
@@ -141,7 +141,7 @@ class Puskesmas extends CI_Controller {
 		$data['user'] = $this->db->get_where('user', [
 			'email' => $this->session->userdata('email')])->row_array();
 
-		$this->form_validation->set_rules('nomor_penyakit','No Penyakit', 'required|trim');
+		$this->form_validation->set_rules('nomor_penyakit','Nomor Penyakit', 'required|trim');
 		$this->form_validation->set_rules('kode','Kode ICD X', 'required|trim');
 		$this->form_validation->set_rules('nama','Nama Penyakit', 'required|trim');
 
@@ -190,7 +190,7 @@ class Puskesmas extends CI_Controller {
 			'email' => $this->session->userdata('email')])->row_array();
 		$data['penyakit'] = $this->db->get_where('penyakit', ['id'=>$id])->row_array();
 
-		$this->form_validation->set_rules('nomor_penyakit','No Penyakit', 'required|trim');
+		$this->form_validation->set_rules('nomor_penyakit','Nomor Penyakit', 'required|trim');
 		$this->form_validation->set_rules('kode','Kode ICD X', 'required|trim');
 		$this->form_validation->set_rules('nama','Nama Penyakit', 'required|trim');
 

@@ -17,7 +17,7 @@
           <h4 id="dataTidakDitemukan" class="mt-3">Data Tidak Ditemukan</h4>
 
           <div class="row my-3" id="infoDaftarRekamMedis">
-          	<div class="col-6">
+          	<div class="col-md-6">
           		<ul class="list-group">
       				  <li class="list-group-item"><strong>Nomor Pendaftaran : <span id="nomor_pendaftaran"></span></strong></li>
       				  <li class="list-group-item">Nama : <span id="nama"></span></li>

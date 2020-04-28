@@ -26,40 +26,42 @@
       </div>
 
       <div class="row mt-3">
-      	<div class="col-md">
-      		<table class="table table-hover">
-			  <thead>
-			    <tr>
-			      <th scope="col">#</th>
-			      <th scope="col">Title</th>
-			      <th scope="col">Menu</th>
-			      <th scope="col">URL</th>
-			      <th scope="col">Icon</th>
-			      <th scope="col">Aktif</th>
-			      <th scope="col">Action</th>
-			    </tr>
-			  </thead>
-			  <tbody>
-			  	<?php $i = 1; ?>
-			    <?php foreach($submenu as $sm) : ?>
-			    	<tr>
-				      <th scope="row"><?= $i; ?></th>
-				      <td><?= $sm['title']; ?></td>
-				      <td><?= $sm['menu']; ?></td>
-				      <td><?= $sm['url']; ?></td>
-				      <td><?= $sm['icon']; ?></td>
-				      <td>
-				      	<input type="checkbox" class="form-check-input ml-3 checkbox_submenu" data-id="<?= $sm['id']; ?>" <?= check_submenu($sm['id']); ?>>
-				      </td>
-				      <td>
-				      	<a href="" data-toggle="modal" data-target="#submenuModal" class="badge badge-success editSubmenu" data-id="<?= $sm['id']; ?>">Ubah</a>
-				      	<a href="#" class="badge badge-danger" data-toggle="modal" data-target="#deleteSubmenuModal" onclick="$('#deleteSubmenuModal #formDelete').attr('action', '<?= base_url('menu/delete_submenu/') . $sm['id']; ?>')">Hapus</a>
-				      </td>
-				    </tr>
-				    <?php $i++; ?>
-			    <?php endforeach ?>
-			  </tbody>
-			</table>
+      	<div class="col">
+      		<div class="table-responsive">
+      		    <table class="table table-hover">
+    			  <thead>
+    			    <tr>
+    			      <th scope="col">#</th>
+    			      <th scope="col">Title</th>
+    			      <th scope="col">Menu</th>
+    			      <th scope="col">URL</th>
+    			      <th scope="col">Icon</th>
+    			      <th scope="col">Aktif</th>
+    			      <th scope="col">Action</th>
+    			    </tr>
+    			  </thead>
+    			  <tbody>
+    			  	<?php $i = 1; ?>
+    			    <?php foreach($submenu as $sm) : ?>
+    			    	<tr>
+    				      <th scope="row"><?= $i; ?></th>
+    				      <td><?= $sm['title']; ?></td>
+    				      <td><?= $sm['menu']; ?></td>
+    				      <td><?= $sm['url']; ?></td>
+    				      <td><?= $sm['icon']; ?></td>
+    				      <td>
+    				      	<input type="checkbox" class="form-check-input ml-3 checkbox_submenu" data-id="<?= $sm['id']; ?>" <?= check_submenu($sm['id']); ?>>
+    				      </td>
+    				      <td>
+    				      	<a href="" data-toggle="modal" data-target="#submenuModal" class="badge badge-success editSubmenu" data-id="<?= $sm['id']; ?>">Ubah</a>
+    				      	<a href="#" class="badge badge-danger" data-toggle="modal" data-target="#deleteSubmenuModal" onclick="$('#deleteSubmenuModal #formDelete').attr('action', '<?= base_url('menu/delete_submenu/') . $sm['id']; ?>')">Hapus</a>
+    				      </td>
+    				    </tr>
+    				    <?php $i++; ?>
+    			    <?php endforeach ?>
+    			  </tbody>
+    			</table>
+      		</div>
       	</div>
       </div>
 

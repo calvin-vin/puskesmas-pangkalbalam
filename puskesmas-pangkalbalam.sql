@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2020 at 08:40 PM
+-- Generation Time: Apr 28, 2020 at 11:08 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -46,8 +46,7 @@ CREATE TABLE `detail_laboratorium` (
 --
 
 INSERT INTO `detail_laboratorium` (`id`, `nama_petugas`, `dokter_pengirim`, `nomor_laboratorium`, `tanggal_pemeriksaan`, `nomor_rekam_medis`, `nama_pasien`, `hasil_pemeriksaan`, `keterangan`, `status`) VALUES
-(3, '', 'Calvin', '', '', '101', 'Invoker Kael', '', '', 0),
-(4, 'Venno Armandes', 'Sutan Muharramsyah', '001', '15/04/2020', '002', 'Andika Adnan Husaini', 'COVID-19', 'batuk, demam', 1);
+(6, 'Venno Armandes', 'Sutan Muharramsyah', '01', '28/04/2020', '04', 'Viyo Agusti Wicaksono', 'Shigellosis, tidak spesifik', '-', 1);
 
 -- --------------------------------------------------------
 
@@ -72,10 +71,9 @@ CREATE TABLE `detail_pemeriksaan` (
 --
 
 INSERT INTO `detail_pemeriksaan` (`id`, `nomor_pemeriksaan`, `nomor_rekam_medis`, `nama_pasien`, `tanggal_berobat`, `nama_dokter`, `nama_penyakit`, `nama_obat`, `keterangan`) VALUES
-(1, '303', '222', 'Zilong', '13/04/2020', 'Calvin', 'Flu Babi', 'hexagrip', 'adkde'),
-(2, '123', '222', 'Zilong', '13/04/2020', 'Calvin', 'COVID-19', 'hexagrip', 'dkded'),
-(4, '112', '123', 'Invoker Kael', '14/04/2020', 'Calvin', 'Flu Babi', 'hexagrip', 'ade'),
-(5, '003', '003', 'Angga Puryanto', '15/04/2020', 'Sutan Muharramsyah', 'Flu Babi', 'hexagrip', 'gatal-gatal, timbul bercak merah di muka');
+(6, '01', '01', 'Adam Zuyinal Adib', '28/04/2020', 'Sutan Muharramsyah', 'Infeksi Salmonella, tidak spesifik', 'Antibiotik', 'Kaki'),
+(7, '02', '02', 'Emma Yuliana', '28/04/2020', 'Sutan Muharramsyah', 'Kolera, yang tidak spesifik', 'Antijamur', '-'),
+(8, '03', '03', 'Mega Indasari', '28/04/2020', 'Sutan Muharramsyah', 'Demam tifoid', 'Antasida', '-');
 
 -- --------------------------------------------------------
 
@@ -97,7 +95,11 @@ CREATE TABLE `obat` (
 --
 
 INSERT INTO `obat` (`id`, `nama`, `jenis`, `stok`, `nomor_obat`, `tanggal_masuk`) VALUES
-(1, 'hexagrip', 'generik', 16, '112', '10/12/2019');
+(3, 'Antasida', 'Tablet', 200, '01', '28/04/2020'),
+(4, 'Antibiotik', 'Tablet', 500, '02', '28/04/2020'),
+(5, 'Antidepresan', 'Tablet', 20, '03', '28/04/2020'),
+(6, 'Antijamur', 'Salep', 20, '04', '28/04/2020'),
+(7, 'Betadine', 'Tetes', 500, '05', '28/04/2020');
 
 -- --------------------------------------------------------
 
@@ -122,13 +124,11 @@ CREATE TABLE `pasien` (
 --
 
 INSERT INTO `pasien` (`id`, `nomor_pasien`, `nama`, `alamat`, `jenis_kelamin`, `nik`, `tanggal_lahir`, `kategori`, `hp`) VALUES
-(3, '10219', 'Layla', 'Jl. Kenanga no 92 kecamatan selindung', 'P', '2367129732124723', '19/10/1994', 'BPJS', '081287429712'),
-(4, '10220', 'Invoker Kael', 'jl Dota', 'L', '1376239843781239', '01/01/2001', 'BPJS', '082365458971'),
-(5, '0851', 'selena', 'jl. lele', 'P', '6545769812557733', '06/07/1999', 'Non BPJS', '083275937512'),
-(6, '001', 'Adam Zuyinal Adib', 'Jl. Kampung asem no 32 kecamatan gerunggang', 'L', '1982763400998821', '15/09/1999', 'Non BPJS', '082165840012'),
-(7, '002', 'Andika Adnan Husaini', 'Jl. Balai no 21 kelurahan gedung nasional kecamatan taman sari pangkalpinang', 'L', '1987321245128877', '21/12/2000', 'BPJS', '084367888812'),
-(8, '003', 'Angga Puryanto', 'Jl. Pasir putih kecamatan bukit intan pangkalpinang', 'L', '1923456555672112', '22/01/1999', 'BPJS', '081266448972'),
-(9, '004', 'Delba Vika Aniya', 'Jl balai', 'P', '1920247685564711', '21/09/1999', 'BPJS', '082355777123');
+(10, '01', 'Adam Zuyinal Adib', 'Jl Komarudin Ujung Krawang Pulogebang RT 05/05', 'L', '1997705304042238', '20/04/2000', 'BPJS', '080773052777'),
+(11, '02', 'Emma Yuliana', 'Jl Teluk Betung 43', 'P', '1991706806827445', '15/09/1998', 'Non BPJS', '085055981401'),
+(12, '03', 'Mega Indasari', 'Jl Binjai P Baris Km 8,5/13 C', 'P', '1975801718632836', '18/10/1999', 'Non BPJS', '085268457849'),
+(13, '04', 'Viyo Agusti Wicaksono', 'Jl Suwiryo 16', 'L', '1944247467877103', '11/04/2006', 'BPJS', '087196505942'),
+(14, '05', 'Rudolf Orlando', 'Psr Turi Baru Street B/72 Lt 1', 'L', '1989699483479314', '17/01/1996', 'Non BPJS', '087145248164');
 
 -- --------------------------------------------------------
 
@@ -155,16 +155,11 @@ CREATE TABLE `pendaftaran` (
 --
 
 INSERT INTO `pendaftaran` (`id`, `nomor_pasien`, `nama`, `nomor_pendaftaran`, `biaya`, `kategori`, `tanggal_lahir`, `nik`, `alamat`, `tanggal_berobat`, `jenis_kelamin`) VALUES
-(1, '10218', 'Zilong', '3001', '70000', 'BPJS', '15/04/2004', '123456789', 'jl balmond 7', '14/04/2020', 'L'),
-(4, '10220', 'Invoker Kael', '3002', '1000', 'BPJS', '01/01/2001', '1376239843781239', 'jl Dota', '11/04/2020', 'L'),
-(5, '10220', 'Invoker Kael', '3003', '1000000', 'BPJS', '01/01/2001', '1376239843781239', 'jl Dota', '12/04/2020', 'L'),
-(6, '10219', 'Layla', '3004', '1000000', 'BPJS', '19/10/1994', '2367129732124723', 'Jl. Kenanga no 92 kecamatan selindung', '23/04/2020', 'P'),
-(7, '0851', 'selena', '228', '50000', 'Non BPJS', '06/07/1999', '6545769812557733', 'jl. lele', '15/04/2020', 'P'),
-(8, '0851', 'selena', '765', '210000', 'Non BPJS', '06/07/1999', '6545769812557733', 'jl. lele', '14/05/2020', 'P'),
-(9, '001', 'Adam Zuyinal Adib', '001', '150000', 'Non BPJS', '15/09/1999', '1982763400998821', 'Jl. Kampung asem no 32 kecamatan gerunggang', '16/04/2020', 'L'),
-(10, '002', 'Andika Adnan Husaini', '002', '0', 'BPJS', '21/12/2000', '1987321245128877', 'Jl. Balai no 21 kelurahan gedung nasional kecamatan taman sari pangkalpinang', '16/04/2020', 'L'),
-(11, '003', 'Angga Puryanto', '003', '0', 'BPJS', '22/01/1999', '1923456555672112', 'Jl. Pasir putih kecamatan bukit intan pangkalpinang', '16/04/2020', 'L'),
-(12, '004', 'Delba Vika Aniya', '004', '0', 'BPJS', '21/09/1999', '1920247685564711', 'Jl balai', '16/04/2020', 'P');
+(13, '01', 'Adam Zuyinal Adib', '01', '0', 'BPJS', '20/04/2000', '1997705304042238', 'Jl Komarudin Ujung Krawang Pulogebang RT 05/05', '28/04/2020', 'L'),
+(14, '02', 'Emma Yuliana', '02', '100000', 'Non BPJS', '15/09/1998', '1991706806827445', 'Jl Teluk Betung 43', '28/04/2020', 'P'),
+(15, '03', 'Mega Indasari', '03', '75000', 'Non BPJS', '18/10/1999', '1975801718632836', 'Jl Binjai P Baris Km 8,5/13 C', '28/04/2020', 'P'),
+(16, '04', 'Viyo Agusti Wicaksono', '04', '0', 'BPJS', '11/04/2006', '1944247467877103', 'Jl Suwiryo 16', '28/04/2020', 'L'),
+(17, '05', 'Rudolf Orlando', '05', '200000', 'Non BPJS', '17/01/1996', '1989699483479314', 'Psr Turi Baru Street B/72 Lt 1', '28/04/2020', 'L');
 
 -- --------------------------------------------------------
 
@@ -184,8 +179,18 @@ CREATE TABLE `penyakit` (
 --
 
 INSERT INTO `penyakit` (`id`, `nama`, `nomor_penyakit`, `kode`) VALUES
-(2, 'COVID-19', '12388', 'KIH8374'),
-(3, 'Flu Babi', '6751', 'H5N1');
+(4, 'Kolera, yang tidak spesifik', '01', 'A00.9'),
+(5, 'Demam tifoid', '02', 'A01.0'),
+(6, 'Demam paratifoid', '03', 'A01.1'),
+(7, 'Demam paratifoid, tidak spesifik', '04', 'A01.4'),
+(8, 'Infeksi Salmonella, tidak spesifik', '05', 'A02.9'),
+(9, 'Shigellosis, tidak spesifik', '06', 'A03.9'),
+(10, 'Infeksi bakteri usus, tidak spesifik', '07', 'A04.9'),
+(11, 'Keracunan staphylococcal bawaan makanan', '08', 'A05.0'),
+(12, 'Botulisme', '09', 'A05.1'),
+(13, 'Keracunan makanan akibat bakteri yang tidak spesifik', '10', 'A05.9'),
+(14, 'Disentri amuba akut', '11', 'A06.0'),
+(15, 'Amoebiasis usus kronis', '12', 'A06.1');
 
 -- --------------------------------------------------------
 
@@ -208,21 +213,11 @@ CREATE TABLE `rekam_medis` (
 --
 
 INSERT INTO `rekam_medis` (`id`, `nomor_rekam_medis`, `nomor_pendaftaran`, `nama_pasien`, `tanggal_berobat`, `nama_dokter`, `status`) VALUES
-(2, '222', '3001', 'Zilong', '13/04/2020', 'Calvin', 1),
-(3, '987', '3001', 'Zilong', '14/04/2020', 'Calvin', 1),
-(4, '123', '3002', 'Invoker Kael', '14/04/2020', 'Calvin', 1),
-(5, '544', '3004', 'Layla', '14/04/2020', 'Calvin', 1),
-(6, '333', '3004', 'Layla', '15/04/2020', 'Calvin', 1),
-(7, '111', '3002', 'Invoker Kael', '15/04/2020', 'Calvin', 1),
-(8, '115', '228', 'selena', '15/04/2020', 'Calvin', 1),
-(9, '1002', '3002', 'Invoker Kael', '15/04/2020', 'Calvin', 0),
-(10, '101', '3002', 'Invoker Kael', '15/04/2020', 'Calvin', 1),
-(11, '1123', '3002', 'Invoker Kael', '15/04/2020', 'Calvin', 0),
-(12, '10023', '765', 'selena', '15/04/2020', 'Calvin', 0),
-(16, '001', '001', 'Adam Zuyinal Adib', '15/04/2020', 'Sutan Muharramsyah', 1),
-(17, '002', '002', 'Andika Adnan Husaini', '15/04/2020', 'Sutan Muharramsyah', 1),
-(18, '003', '003', 'Angga Puryanto', '15/04/2020', 'Sutan Muharramsyah', 1),
-(19, '004', '004', 'Delba Vika Aniya', '16/04/2020', 'Calvin', 0);
+(21, '01', '01', 'Adam Zuyinal Adib', '28/04/2020', 'Sutan Muharramsyah', 1),
+(22, '02', '02', 'Emma Yuliana', '28/04/2020', 'Sutan Muharramsyah', 1),
+(23, '03', '03', 'Mega Indasari', '28/04/2020', 'Sutan Muharramsyah', 1),
+(24, '04', '04', 'Viyo Agusti Wicaksono', '28/04/2020', 'Sutan Muharramsyah', 1),
+(25, '05', '05', 'Rudolf Orlando', '28/04/2020', 'Sutan Muharramsyah', 1);
 
 -- --------------------------------------------------------
 
@@ -248,8 +243,7 @@ CREATE TABLE `rujukan` (
 --
 
 INSERT INTO `rujukan` (`id`, `tujuan`, `nomor_rujukan`, `nama_pasien`, `tanggal_berobat`, `nomor_rekam_medis`, `keterangan`, `nama_penyakit`, `nama_petugas`, `status`) VALUES
-(1, 'rs benteng', '112', 'Layla', '14/04/2020', '544', 'dakde', 'COVID-19', 'Calvin', 1),
-(2, 'rs sungailiat', '001', 'Adam Zuyinal Adib', '15/04/2020', '001', 'batuk, demam', 'COVID-19', 'M. Irpan Trikurniawan', 1);
+(4, 'Rs Bakti Timah', '01', 'Rudolf Orlando', '28/04/2020', '05', '-', 'Keracunan staphylococcal bawaan makanan', 'M. Irpan Trikurniawan', 1);
 
 -- --------------------------------------------------------
 
@@ -275,13 +269,13 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `email`, `password`, `image`, `role_id`, `section`, `is_active`, `date_created`, `last_login`) VALUES
-(1, 'Calvin', 'calvinsan123@gmail.com', '$2y$10$YO148UE5GherPwaiF9m9cuOiuUVrX2Id1hzl1B2EZJfeGBIXvHlsW', '3x4.jpg', 1, 'Admin', 1, 1585668838, 1586975903),
-(6, 'Sutan Muharramsyah', 'sutan123@gmail.com', '$2y$10$Hp5epctntIEhcuYEndM9c.X75u/6JKmV8exie2kgBDNPjlqpYnVGy', 'default.jpg', 2, 'Mata', 1, 1586972815, 1586974386),
-(7, 'David Fredy Stefano', 'davidkun11@gmail.com', '$2y$10$HkpN1gBa3ZMjIrTnzJWCUu4cqX5ADiJ./FmnjMbR3L0.Dnmsz8Gfi', 'default.jpg', 3, 'Pendaftaran', 1, 1586972964, 1586974205),
-(8, 'M. Irpan Trikurniawan', 'mrirpan@gmail.com', '$2y$10$k3x8R3Ay7bKuhcOLWB660.GBODtLTBEupYheI8Kt9xr4xxswzS8GC', 'default.jpg', 4, 'Rujukan', 1, 1586973101, 1586974915),
-(9, 'Venno Armandes', 'vennodesh@gmail.com', '$2y$10$0AfMlHT7gHHc5TAecklKG.JOGTnCGAHhInv9OIGh44QVpSQHADE.6', 'default.jpg', 5, 'USG', 1, 1586973268, 1586974872),
-(10, 'Ella Kristia', 'kristiaella@gmail.com', '$2y$10$Z.fiSH2TqDkPrkdvvqp5xOx4VwrJmQI4cfF0ol.e616XblItW59MG', 'default.jpg', 6, 'Puskesmas', 1, 1586973333, 1586973333),
-(11, 'Khailas Rakhmatullah', 'khailasrakh@gmail.com', '$2y$10$r2iVFaMB7QCEBmPn7FHLtu2qpTDjlhLyrsmqdVAIxCuZkGvAEwblu', 'default.jpg', 1, 'Admin', 1, 1586973439, 1586973439);
+(1, 'Calvin', 'calvin017@gmail.com', '$2y$10$YO148UE5GherPwaiF9m9cuOiuUVrX2Id1hzl1B2EZJfeGBIXvHlsW', 'default.png', 1, 'Admin', 1, 1585668838, 1588063342),
+(6, 'Sutan Muharramsyah', 'sutan123@gmail.com', '$2y$10$Hp5epctntIEhcuYEndM9c.X75u/6JKmV8exie2kgBDNPjlqpYnVGy', 'default.png', 2, 'Mata', 1, 1586972815, 1588064413),
+(7, 'David Fredy Stefano', 'davidkun11@gmail.com', '$2y$10$HkpN1gBa3ZMjIrTnzJWCUu4cqX5ADiJ./FmnjMbR3L0.Dnmsz8Gfi', 'default.png', 3, 'Pendaftaran', 1, 1586972964, 1588064061),
+(8, 'M. Irpan Trikurniawan', 'mrirpan@gmail.com', '$2y$10$k3x8R3Ay7bKuhcOLWB660.GBODtLTBEupYheI8Kt9xr4xxswzS8GC', 'default.png', 4, 'Rujukan', 1, 1586973101, 1588064586),
+(9, 'Venno Armandes', 'vennodesh@gmail.com', '$2y$10$0AfMlHT7gHHc5TAecklKG.JOGTnCGAHhInv9OIGh44QVpSQHADE.6', 'default.png', 5, 'USG', 1, 1586973268, 1588064517),
+(10, 'Ella Kristia', 'kristiaella@gmail.com', '$2y$10$Z.fiSH2TqDkPrkdvvqp5xOx4VwrJmQI4cfF0ol.e616XblItW59MG', 'default.png', 6, 'Puskesmas', 1, 1586973333, 1588064715),
+(11, 'Khailas Rakhmatullah', 'khailasrakh@gmail.com', '$2y$10$r2iVFaMB7QCEBmPn7FHLtu2qpTDjlhLyrsmqdVAIxCuZkGvAEwblu', 'default.png', 1, 'Admin', 1, 1586973439, 1586973439);
 
 -- --------------------------------------------------------
 
@@ -303,22 +297,25 @@ INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
 (1, 1, 1),
 (14, 2, 2),
 (16, 3, 2),
-(22, 2, 5),
 (33, 1, 8),
 (34, 1, 9),
 (37, 1, 5),
 (38, 1, 7),
 (40, 1, 4),
 (41, 1, 6),
-(42, 3, 6),
 (43, 4, 2),
 (45, 5, 8),
 (46, 5, 2),
 (47, 6, 4),
 (48, 6, 2),
-(49, 1, 3),
-(50, 1, 2),
-(51, 4, 7);
+(51, 4, 7),
+(52, 6, 5),
+(53, 6, 6),
+(54, 6, 7),
+(55, 6, 8),
+(56, 2, 6),
+(57, 3, 5),
+(58, 6, 1);
 
 -- --------------------------------------------------------
 
@@ -340,8 +337,8 @@ INSERT INTO `user_menu` (`id`, `menu`) VALUES
 (2, 'User'),
 (3, 'Menu'),
 (4, 'Puskesmas'),
-(5, 'Dokter'),
-(6, 'Pendaftaran'),
+(5, 'Pendaftaran'),
+(6, 'Dokter'),
 (7, 'Rujukan'),
 (8, 'Laboratorium');
 
@@ -366,7 +363,7 @@ INSERT INTO `user_role` (`id`, `role`) VALUES
 (3, 'Petugas Pendaftaran'),
 (4, 'Petugas Rujukan'),
 (5, 'Petugas Laboratorium'),
-(6, 'Petugas Puskesmas');
+(6, 'Admin Puskesmas');
 
 -- --------------------------------------------------------
 
@@ -398,13 +395,13 @@ INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active
 (8, 1, 'Manajemen Pengguna', 'admin/user', 'fas fa-fw fa-users', 1),
 (12, 4, 'Obat', 'puskesmas/', 'fas fa-fw fa-briefcase-medical', 1),
 (13, 4, 'Penyakit', 'puskesmas/penyakit', 'fas fa-fw fa-heartbeat', 1),
-(14, 5, 'Rekam Medis', 'dokter', 'fas fa-fw fa-stethoscope', 1),
+(14, 6, 'Rekam Medis', 'dokter', 'fas fa-fw fa-stethoscope', 1),
 (15, 7, 'Belum Dirujuk', 'rujukan', 'fas fa-fw fa-hospital', 1),
 (16, 8, 'Belum Diperiksa', 'laboratorium', 'fas fa-fw fa-flask', 1),
-(17, 6, 'Pasien', 'pendaftaran', 'fas fa-fw fa-clinic-medical', 1),
-(18, 6, 'Pendaftaran', 'pendaftaran/pendaftaran', 'fas fa-fw fa-notes-medical', 1),
-(19, 5, 'Data Rekam Medis', 'dokter/data_rekam', 'fas fa-fw fa-file-medical', 1),
-(21, 5, 'Hasil Pemeriksaan', 'dokter/pemeriksaan', 'fas fa-fw fa-user-check', 1),
+(17, 5, 'Pasien', 'pendaftaran', 'fas fa-fw fa-clinic-medical', 1),
+(18, 5, 'Pendaftaran', 'pendaftaran/pendaftaran', 'fas fa-fw fa-notes-medical', 1),
+(19, 6, 'Data Rekam Medis', 'dokter/data_rekam', 'fas fa-fw fa-file-medical', 1),
+(21, 6, 'Hasil Pemeriksaan', 'dokter/pemeriksaan', 'fas fa-fw fa-user-check', 1),
 (22, 7, 'Telah Dirujuk', 'rujukan/telah_dirujuk', 'fas fa-fw fa-check', 1),
 (23, 8, 'Telah Diperiksa', 'laboratorium/telah_diperiksa', 'fas fa-fw fa-check', 1);
 
@@ -498,61 +495,61 @@ ALTER TABLE `user_sub_menu`
 -- AUTO_INCREMENT for table `detail_laboratorium`
 --
 ALTER TABLE `detail_laboratorium`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `detail_pemeriksaan`
 --
 ALTER TABLE `detail_pemeriksaan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `obat`
 --
 ALTER TABLE `obat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `pasien`
 --
 ALTER TABLE `pasien`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `pendaftaran`
 --
 ALTER TABLE `pendaftaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `penyakit`
 --
 ALTER TABLE `penyakit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `rekam_medis`
 --
 ALTER TABLE `rekam_medis`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `rujukan`
 --
 ALTER TABLE `rujukan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `user_menu`

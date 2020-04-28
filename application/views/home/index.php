@@ -49,15 +49,17 @@
 <style type="text/css">
   .jumbotron {
     background-image: url('assets/img/home/puskesmas_pangkal_balam.png');
-    height: 360px;
+    height: 280px;
     background-repeat: no-repeat;
-    background-position: 0 -25px;
+    background-position: -15px -20px;
     background-size: cover;
+    margin-top: 60px;
   }
 
   .pelayanan .bg-pelayanan {
     background-image: url(assets/img/home/undraw_doctors_hwty.png);
-    height: 350px;
+    background-position: -25px -25px;
+    height: 290px;
     background-size: cover;
   }
 
@@ -123,6 +125,11 @@
 
     .jumbotron {
       height: 930px;
+      background-position: 0 -100px;
+    }
+
+    .pelayanan .bg-pelayanan {
+      background-position: 0 25px;
     }
 
     .pattern-3 {
@@ -174,14 +181,13 @@
 <!-- Carousel -->
 <div class="jumbotron jumbotron-fluid bg-white">
   <div class="container">
-    
   </div>
 </div>
 <!-- End of Carousel -->
 
 <!-- Pelayanan -->
 <section class="pelayanan px-3" id="pelayanan">
-  <div class="row">
+  <div class="row justify-content-center">
     <div class="col-md-6 bg-pelayanan">
       
     </div>

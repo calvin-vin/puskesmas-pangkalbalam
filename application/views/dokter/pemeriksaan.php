@@ -45,19 +45,19 @@
                       <td><?= $dp['nama_penyakit']; ?></td>
                       <td><?= $dp['nama_dokter']; ?></td>
                       <td>
-                      	<div class="row justify-content-center">
-                          <div class="col-3">
+                      	<div class="row justify-content-center text-center">
+                          <div class="col-md-3 py-1">
                             <a href="#" data-toggle="modal" data-target="#detailPemeriksaanModal" data-toggle="tooltip" data-placement="bottom" title="Detail" class="btn btn-info btn-circle btn-sm detailPemeriksaan" data-id="<?= $dp['id']; ?>">
                               <i class="fas fa-info-circle"></i>
                             </a>
                           </div>
-                          <div class="col-3">
+                          <div class="col-md-3 py-1">
                             <a href="<?= base_url('dokter/pemeriksaan_edit/') . $dp['id']; ?>"
                               title="Ubah" class="btn btn-success btn-circle btn-sm ">
                               <i class="fas fa-edit"></i>
                             </a>
                           </div>
-                          <div class="col-3">
+                          <div class="col-md-3 py-1">
                             <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#deletePemeriksaanModal"  title="Hapus" onclick="$('#deletePemeriksaanModal #formDelete').attr('action', '<?= base_url('dokter/pemeriksaan_delete/') . $dp['id']; ?>')">
                               <i class="fas fa-trash"></i>
                             </a>

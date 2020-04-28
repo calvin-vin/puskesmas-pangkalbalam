@@ -45,30 +45,30 @@
                       <td><?= $rm['tanggal_berobat']; ?></td>
                       <td><?= $rm['nama_dokter']; ?></td>
                       <td>
-                      	<div class="row">
-                          <div class="col">
+                      	<div class="row text-center">
+                          <div class="col py-1">
                             <a href="<?= base_url('dokter/data_rekam_edit/') . $rm['id']; ?>"
                               title="Ubah" class="btn btn-success btn-circle btn-sm ">
                               <i class="fas fa-edit"></i>
                             </a>
                           </div>
-                          <div class="col">
+                          <div class="col py-1">
                             <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#deleteDataRekamModal"  title="Hapus" onclick="$('#deleteDataRekamModal #formDelete').attr('action', '<?= base_url('dokter/data_rekam_delete/') . $rm['id']; ?>')">
                               <i class="fas fa-trash"></i>
                             </a>
                           </div>
                           <?php if ($rm['status'] == 0) : ?>
-                            <div class="col">
+                            <div class="col py-1">
                               <a href="<?= base_url('dokter/rujukan/') . $rm['id']; ?>" class="btn btn-warning btn-circle btn-sm" title="Rujukan">
                                 <i class="fas fa-hospital"></i>
                               </a>
                             </div>
-                            <div class="col">
+                            <div class="col py-1">
                               <a href="#" class="btn btn-info btn-circle btn-sm" data-toggle="modal" data-target="#pemeriksaanLabModal" title="Laboratorium" onclick="$('#pemeriksaanLabModal #formLab').attr('action', '<?= base_url('dokter/laboratorium/') . $rm['id']; ?>')">
                                 <i class="fas fa-flask"></i>
                               </a>
                             </div>
-                            <div class="col">
+                            <div class="col py-1">
                               <a href="<?= base_url('dokter/rekam_finish/') . $rm['id']; ?>" class="btn btn-primary btn-circle btn-sm" title="Selesai">
                                 <i class="fas fa-check"></i>
                               </a>
